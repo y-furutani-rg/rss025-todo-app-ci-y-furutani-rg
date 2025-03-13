@@ -13,7 +13,7 @@ export default defineConfig(({ mode }) => {
                 refresh: true,
             }),
             vue(),
-            // tailwindcss(),
+            tailwindcss(),
         ],
         server: {
             host: '0.0.0.0',

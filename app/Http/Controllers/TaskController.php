@@ -13,13 +13,15 @@ class TaskController extends Controller
     /**
      * タスク全件取得API
      *
-     * @return Task|JsonResponse
+     * @return JsonResponse
      */
     public function index() : JsonResponse
     {
-        $tasks = Task::all();
-        return response()->json($tasks); 
-        // log::debug($tasks);
-        // return Task::all();
+        try {
+            $tasks = Task::all();
+            return response()->json($tasks);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+        }
     }
 }

@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import Button from './Button.vue';
 
 const tasks = ref([]);
 
@@ -12,6 +13,7 @@ function getTasks() {
 onMounted(() => {
   getTasks();
 });
+</script>
 
 <template>
   <div class="table-frame">

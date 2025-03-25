@@ -1,7 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import Pencil from "@/components/icon/pencil.vue";
-import Trash from "@/components/icon/trash.vue";
 
 const tasks = ref([]);
 

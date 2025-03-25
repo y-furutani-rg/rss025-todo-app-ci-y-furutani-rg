@@ -15,14 +15,6 @@ onMounted(() => {
   getTasks();
 });
 
-function deleteTask(id) {
-  fetch('http://172.16.15.10:80/api/tasks/' + id, {
-    method: 'DELETE',
-  })
-  .then(res => getTasks());
-}
-</script>
-
 <template>
   <div class="table-frame">
     <table>

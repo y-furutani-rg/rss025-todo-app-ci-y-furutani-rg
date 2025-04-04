@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('content');
             $table->string('person_in_charge');
-            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

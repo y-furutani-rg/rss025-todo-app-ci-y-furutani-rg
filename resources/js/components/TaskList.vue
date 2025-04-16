@@ -13,13 +13,6 @@ function getTasks() {
 onMounted(() => {
   getTasks();
 });
-
-function deleteTask(id) {
-  fetch(`${API_URL}/${id}`, {
-    method: 'DELETE',
-  })
-    .then(res => getTasks());
-}
 </script>
 
 <template>
@@ -28,7 +21,7 @@ function deleteTask(id) {
       <table>
         <thead>
           <tr>
-            <th scope="col" class="th-cell number-width sticky-edge">
+            <th scope="col" class="th-cell number-width">
               番号
             </th>
             <th scope="col" class="th-cell title-width">

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { API_URL } from '../api/grobalApi';
+import { API_URL } from '../api/globalApi';
 
 const tasks = ref([]);
 

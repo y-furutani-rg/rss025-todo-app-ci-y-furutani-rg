@@ -23,4 +23,6 @@
     --color-disabled: #cdcdcd;
     --color-input-border: #8c8c8c;
     --color-table-border: #e7e3e3;
+    --color-shadow-light: #e0e0e0e6;
+    --color-shadow-dark: #e0e0e080;
 }

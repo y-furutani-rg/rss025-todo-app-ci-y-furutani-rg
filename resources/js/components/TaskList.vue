@@ -1,10 +1,11 @@
 <script setup>
   import { ref, onMounted } from 'vue';
+  import { API_URL } from '../api/globalApi.js';
 
   const tasks = ref([])
 
   function getTasks() {
-    fetch('http://localhost:80/api/tasks')
+    fetch(API_URL)
       .then(res => res.json())
       .then(json => tasks.value = json)
   }

@@ -26,3 +26,47 @@
     --color-shadow-light: #e0e0e0e6;
     --color-shadow-dark: #e0e0e080;
 }
+
+.alert-message-base {
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    opacity: 1;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.alert-message-success {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+}
+
+.alert-message-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.flash-message-transition-enter-active,
+.flash-message-transition-leave-active {
+    transition: opacity 0.5s ease, height 0.5s ease, margin-bottom 0.5s ease, padding 0.5s ease;
+    overflow: hidden; /* 高さが縮むときに内容がはみ出さないように */
+}
+
+.flash-message-transition-enter-from {
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.flash-message-transition-leave-to {
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}

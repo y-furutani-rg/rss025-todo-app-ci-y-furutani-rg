@@ -1,34 +1,51 @@
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, watch } from "vue"
+import { useFlashMessage } from '../composables/useFlashMessage.js'
 
-const isShown = ref(false);
-const color = ref('success');
-const message = ref('');
+const { flashMessageState } = useFlashMessage()
+
+const isShown = ref(false)
+const color = ref('success')
+const message = ref('')
+
+const displayFlashMessage = (messageData) => {
+    if (messageData) {
+        message.value = messageData.message
+        color.value = messageData.color
+        isShown.value = true
+
+        setTimeout(() => {
+            isShown.value = false
+            localStorage.removeItem('FlashMessage')
+        }, 5000)
+    } else {
+        isShown.value = false
+    }
+};
+
+const readAndDisplayFlashMessageFromStorage = () => {
+    const storedMessage = localStorage.getItem('FlashMessage')
+    if (storedMessage) {
+        const messageData = JSON.parse(storedMessage)
+        flashMessageState.value = messageData
+        localStorage.removeItem('FlashMessage')
+    }
+};
+
+watch(flashMessageState, (newMessageData) => {
+    displayFlashMessage(newMessageData)
+}, { immediate: true });
 
 onMounted(() => {
-    const storedMessage = localStorage.getItem('FlashMessage');
-
-    if (storedMessage) {
-        const messageData = JSON.parse(storedMessage);
-
-        message.value = messageData.message;
-        color.value = messageData.color;
-        isShown.value = true;
-
-        localStorage.removeItem('FlashMessage');
-        
-        setTimeout(() => {
-            isShown.value = false;
-        }, 5000);
-    }
-})
+    readAndDisplayFlashMessageFromStorage()
+});
 
 const isSuccess = computed(() => {
-    return color.value == "success";
+    return color.value == "success"
 });
 
 const isError = computed(() => {
-    return color.value == "error";
+    return color.value == "error"
 });
 
 </script>

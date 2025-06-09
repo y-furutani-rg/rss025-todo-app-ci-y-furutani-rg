@@ -1,19 +1,33 @@
 import { ref } from 'vue'
 
-const currentFlashMessage = ref(null)
+const immediateFlashMessage = ref(null)
 
 export function useFlashMessage() {
-    const setFlashMessage = (message, color) => {
+    const setFlashMessage = (message, color, persist = false) => {
         const messageData = {
             message: message,
             color: color,
         }
-        localStorage.setItem('FlashMessage', JSON.stringify(messageData))
-        currentFlashMessage.value = messageData
+
+        if (persist) {
+            localStorage.setItem('FlashMessage', JSON.stringify(messageData))
+        } else {
+            immediateFlashMessage.value = messageData
+        }
     }
 
-    return { 
+    const getPersistedFlashMessage = () => {
+        const storedMessage = localStorage.getItem('FlashMessage')
+        if (storedMessage) {
+            localStorage.removeItem('FlashMessage')
+            return JSON.parse(storedMessage)
+        }
+        return null
+    }
+
+    return {
         setFlashMessage,
-        flashMessageState: currentFlashMessage,
+        immediateFlashMessageState: immediateFlashMessage,
+        getPersistedFlashMessage,
     }
 }

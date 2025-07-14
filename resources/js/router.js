@@ -1,6 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import TaskList from './pages/TaskList.vue';
 
 const routes = [
+    {
+        path: '/tasks', // ルートパスにアクセスしたときに
+        component: TaskList, // TaskList コンポーネントを表示する
+    }
 ];
 
 const router = createRouter({

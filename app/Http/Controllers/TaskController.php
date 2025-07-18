@@ -10,8 +10,10 @@ class TaskController extends Controller
     {
         try {   
             $tasks = Task::getAllTasks();
-            return response()->json($tasks);
-        } catch (\Throwable) {
+            return response()->json([
+                'data' => $tasks,
+                'message' => 'データの取得に成功しました。']);
+        } catch (\Exception $e) {
             return response()->json([
                 'message' => 'データを取得できませんでした。'
             ], 500); 

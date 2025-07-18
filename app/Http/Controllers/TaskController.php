@@ -6,15 +6,15 @@ use App\Models\Task;
 
 class TaskController extends Controller
 {
-    /**
-     * tasksテーブルの全てのデータをJSON形式で返す
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function index()
     {
-        $tasks = Task::all();
-
-        return $tasks;
+        try {   
+            $tasks = Task::getAllTasks();
+            return response()->json($tasks);
+        } catch (\Throwable) {
+            return response()->json([
+                'message' => 'データを取得できませんでした。'
+            ], 500); 
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 class Task extends Model
 {
@@ -11,4 +12,9 @@ class Task extends Model
         'content',
         'person_in_charge',
     ];
+
+    public static function getAllTasks(): Collection
+    {
+        return self::all();
+    }
 }

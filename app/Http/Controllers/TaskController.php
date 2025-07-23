@@ -20,4 +20,15 @@ class TaskController extends Controller
             ], 500); 
         }
     }
+    public function store(Request $repuest)
+    {
+        try {
+            $task = Task::create([
+                'title' => $repuest->title,
+                'content' => $repuest->content,
+                'person_in_charge' => $repuest->person_in_charge
+            ]);            
+        }
+
+    }
 }

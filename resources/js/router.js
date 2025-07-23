@@ -8,7 +8,7 @@ const routes = [
         component: TaskList, // TaskList コンポーネントを表示する
     },
     {
-        path: '/tasks/create',
+        path: '/task/create',
         component: TaskCreate,
     }
 ];

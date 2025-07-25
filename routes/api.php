@@ -10,4 +10,4 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/tasks', [TaskController::class, 'index']);
 
-Route::post('/tasks/create', [TaskController::class, 'store']);
+Route::post('/task/create', [TaskController::class, 'store']);

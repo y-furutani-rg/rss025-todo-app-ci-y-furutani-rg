@@ -21,7 +21,7 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios'; 
-import { API_URL_create } from '../api/globalApi.js';
+import { API_URL_CREATE } from '../api/globalApi.js';
 import { useRouter } from 'vue-router';
 import { useFlashMessage } from '../composables/useFlashMessage.js';
 
@@ -35,7 +35,7 @@ const task = ref({
 
 const submitTask = async() => {
     try {
-        const response = await axios.post(API_URL_create, task.value);
+        const response = await axios.post(API_URL_CREATE, task.value);
         task.value.title = '';
         task.value.content = '';
         task.value.person_in_charge = '';        

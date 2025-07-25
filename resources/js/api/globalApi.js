@@ -1,2 +1,2 @@
 export const API_URL = 'http://localhost/api/tasks';
-export const API_URL_create = 'http://localhost/api/task/create';
+export const API_URL_CREATE = 'http://localhost/api/task/create';

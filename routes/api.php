@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\TaskController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
@@ -9,3 +9,5 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/tasks', [TaskController::class, 'index']);
+
+Route::post('/task/create', [TaskController::class, 'store']);

@@ -21,24 +21,21 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios'; 
-import { API_URL_2 } from '../api/globalApi.js';
+import { API_URL_create } from '../api/globalApi.js';
 import { useRouter } from 'vue-router';
 import { useFlashMessage } from '../composables/useFlashMessage.js';
 
 const { setFlashMessage } = useFlashMessage();
-const router = useRouter()
-const task = ref(
-    {
-        title: '',
-        content: '',
-        person_in_charge: ''
-    }
-);
+const router = useRouter();
+const task = ref({
+    title: '',
+    content: '',
+    person_in_charge: ''
+});
 
 const submitTask = async() => {
     try {
-        const response = await axios.post(API_URL_2, task.value);
-        console.log('サーバーからのレスポンス：', response.data);
+        const response = await axios.post(API_URL_create, task.value);
         task.value.title = '';
         task.value.content = '';
         task.value.person_in_charge = '';        

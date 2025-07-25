@@ -10,7 +10,7 @@ import FlashMessage from './components/FlashMessage.vue';
 export default {
     name: 'App',
     components: {
-    FlashMessage
+        FlashMessage
     }
 };
 </script>

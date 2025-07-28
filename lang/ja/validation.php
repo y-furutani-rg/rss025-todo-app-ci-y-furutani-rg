@@ -147,6 +147,9 @@ return [
     */
 
     'attributes' => [
+        'title' => 'タイトル',
+        'content' => '内容',
+        'person_in_charge' => '担当者',
     ],
 
 ];

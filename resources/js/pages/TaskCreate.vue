@@ -3,7 +3,10 @@
         <div class="w-80 mx-auto pt-4">
             <div class="mb-4">
                 <label for="title" class="text-sm text-gray-500 font-medium">タイトル</label>
-                    <input id="title" v-model="task.title" type="text" 
+                <input 
+                    id="title" 
+                    v-model="task.title" 
+                    type="text" 
                     class="w-full py-2 px-4 border-1 focus:outline-none cursor-pointer rounded-md"
                     :class="{ 'border-black focus:border-blue-500':!validationErrors.title, 'border-red-500 focus:border-red-500':validationErrors.title }">
                 <p v-if="validationErrors.title" class="mt-1 text-red-500 text-xs">
@@ -12,7 +15,9 @@
             </div>
             <div class="mb-4">
                 <label for="content" class="text-sm text-gray-500 font-medium">内容</label>
-                <textarea id="content" v-model="task.content" 
+                <textarea 
+                    id="content" 
+                    v-model="task.content" 
                     class="w-full py-2 px-4 border-1 focus:outline-none focus:border-blue-500 cursor-pointer rounded-md"
                     :class="{ 'border-black focus:border-blue-500':!validationErrors.content, 'border-red-500 focus:border-red-500':validationErrors.content }">
                 </textarea>        
@@ -23,7 +28,10 @@
             </div>
             <div class="mb-4">
                 <label for="person_in_charge" class="text-sm text-gray-500 font-medium">担当者</label>
-                <input id="person_in_charge" v-model="task.person_in_charge" type="text" 
+                <input 
+                    id="person_in_charge" 
+                    v-model="task.person_in_charge" 
+                    type="text" 
                     class="w-full py-2 px-4 border-1 focus:outline-none focus:border-blue-500 cursor-pointer rounded-md"
                     :class="{ 'border-black focus:border-blue-500':!validationErrors.person_in_charge, 'border-red-500 focus:border-red-500':validationErrors.person_in_charge }">
                 <p v-if="validationErrors.person_in_charge" class="mt-1 text-red-500 text-xs">

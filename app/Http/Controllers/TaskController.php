@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
@@ -27,14 +27,10 @@ class TaskController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
         try {
-            $task = Task::create([
-                'title' => $request->title,
-                'content' => $request->content,
-                'person_in_charge' => $request->person_in_charge,
-            ]);
+            $task = Task::create($request->validated());
 
             return response()->json([
                 'data' => $task,

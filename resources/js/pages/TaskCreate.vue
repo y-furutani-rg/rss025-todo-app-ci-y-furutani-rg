@@ -7,7 +7,7 @@
                     class="w-full py-2 px-4 border-1 focus:outline-none cursor-pointer rounded-md"
                     :class="{ 'border-black focus:border-blue-500':!validationErrors.title, 'border-red-500 focus:border-red-500':validationErrors.title }">
                 <p v-if="validationErrors.title" class="mt-1 text-red-500 text-xs">
-                {{ validationErrors.title[0] }}
+                    {{ validationErrors.title[0] }}
                 </p>                
             </div>
             <div class="mb-4">
@@ -17,7 +17,7 @@
                     :class="{ 'border-black focus:border-blue-500':!validationErrors.content, 'border-red-500 focus:border-red-500':validationErrors.content }">
                 </textarea>        
                 <p v-if="validationErrors.content" class="mt-1 text-red-500 text-xs">
-                {{ validationErrors.content[0] }}
+                    {{ validationErrors.content[0] }}
                 </p>
 
             </div>
@@ -27,7 +27,7 @@
                     class="w-full py-2 px-4 border-1 focus:outline-none focus:border-blue-500 cursor-pointer rounded-md"
                     :class="{ 'border-black focus:border-blue-500':!validationErrors.person_in_charge, 'border-red-500 focus:border-red-500':validationErrors.person_in_charge }">
                 <p v-if="validationErrors.person_in_charge" class="mt-1 text-red-500 text-xs">
-                {{ validationErrors.person_in_charge[0] }}
+                    {{ validationErrors.person_in_charge[0] }}
                 </p>
             </div>
             <button type="submit" class="w-full p-[10px] bg-[var(--color-accent)] text-white text-center border-1 cursor-pointer rounded-md">追加</button>
@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref } from 'vue';
 import axios from 'axios'; 
 import { API_URL_CREATE } from '../api/globalApi.js';
 import { useRouter } from 'vue-router';
@@ -50,7 +50,7 @@ const task = ref({
     person_in_charge: ''
 });
 
-const validationErrors = reactive({});
+const validationErrors = ref({});
 const submitTask = async() => {
     try {
         const response = await axios.post(API_URL_CREATE, task.value);
@@ -61,7 +61,7 @@ const submitTask = async() => {
         router.push('/tasks');
     } catch (error) {
         if (error.response && error.response.status === 422) {
-            Object.assign(validationErrors, error.response.data.validationErrors);
+            Object.assign(validationErrors.value, error.response.data.errors);
             setFlashMessage('入力欄を確認してください。', 'error');
         } else {
             console.error('データの送信に失敗しました', error);

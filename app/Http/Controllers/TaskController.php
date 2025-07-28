@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\ValidationException;
 
 class TaskController extends Controller
 {
@@ -28,24 +27,14 @@ class TaskController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
         try {
-            $validatedData = $request->validate([
-                'title' => 'required|string|max:30',
-                'content' => 'required|string',
-                'person_in_charge' => 'required|string|max:10',
-            ]);
-            $task = Task::create($validatedData);
+            $task = Task::create($request->validated());
 
             return response()->json([
                 'data' => $task,
                 'message' => 'データの登録に成功しました。']);
-        } catch (ValidationException $e) {
-            return response()->json([
-                'message' => 'データの登録に失敗しました。',
-                'validationErrors' => $e->errors(),
-            ], 422);
         } catch (Exception $e) {
             Log::error($e->getMessage());
 

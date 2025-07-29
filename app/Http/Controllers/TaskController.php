@@ -29,14 +29,17 @@ class TaskController extends Controller
 
     public function store(StoreTaskRequest $request)
     {
+        DB::beginTransaction();
         try {
             $task = Task::create($request->validated());
+            DB::commit();
 
             return response()->json([
                 'data' => $task,
                 'message' => 'データの登録に成功しました。']);
         } catch (Exception $e) {
             Log::error($e->getMessage());
+            DB::rollBack();
 
             return response()->json([
                 'message' => 'データの登録に失敗しました。',

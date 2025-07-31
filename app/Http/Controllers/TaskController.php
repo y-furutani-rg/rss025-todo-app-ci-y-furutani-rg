@@ -59,7 +59,7 @@ class TaskController extends Controller
                 'message' => 'データの取得に成功しました。',
             ]);
         } catch (ModelNotFoundException $e) {
-            Log::error($e);
+            Log::warning($e);
 
             return response()->json([
                 'message' => 'データが見つかりませんでした。',

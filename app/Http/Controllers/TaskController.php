@@ -49,10 +49,10 @@ class TaskController extends Controller
         }
     }
 
-    public function show($id)
+    public function getTask($id)
     {
         try {
-            $task = Task::findOrFail($id);
+            $task = Task::findTaskById($id);
 
             return response()->json([
                 'data' => $task,

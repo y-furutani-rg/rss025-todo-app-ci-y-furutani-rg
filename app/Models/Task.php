@@ -17,4 +17,9 @@ class Task extends Model
     {
         return self::all();
     }
+
+    public static function findTaskById(int $id): self
+    {
+        return self::findOrFail($id);
+    }
 }

@@ -54,7 +54,7 @@ const fetchTask = async (id) => {
 
 onMounted(() => {
     const id = router.params.id;
-    if(id) {
+    if (id) {
         fetchTask(id);
     }
 });

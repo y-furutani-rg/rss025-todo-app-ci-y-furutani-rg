@@ -24,7 +24,7 @@ class TaskController extends Controller
             Log::error($e);
 
             return response()->json([
-                'message' => 'データを取得できませんでした。',
+                'message' => 'サーバー内部でエラーが発生しました。',
             ], 500);
         }
     }
@@ -44,7 +44,7 @@ class TaskController extends Controller
             DB::rollBack();
 
             return response()->json([
-                'message' => 'データの登録に失敗しました。',
+                'message' => 'サーバー内部でエラーが発生しました。',
             ], 500);
         }
     }
@@ -68,7 +68,7 @@ class TaskController extends Controller
             Log::error($e);
 
             return response()->json([
-                'message' => 'データを取得できませんでした。',
+                'message' => 'サーバー内部でエラーが発生しました。',
             ], 500);
         }
     }

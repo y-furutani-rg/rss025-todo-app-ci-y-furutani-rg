@@ -72,4 +72,24 @@ class TaskController extends Controller
             ], 500);
         }
     }
+
+    public function update(StoreTaskRequest $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            Task::updateTask($request->validated(), $id);
+            DB::commit();
+
+            return response()->json([
+                'message' => 'データの更新に成功しました。',
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            DB::rollBack();
+
+            return response()->json([
+                'message' => 'サーバー内部でエラーが発生しました。',
+            ], 500);
+        }
+    }
 }

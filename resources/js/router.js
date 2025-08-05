@@ -20,7 +20,7 @@ const routes = [
     {
         path: '/task/edit/:id',
         component: TaskEdit,
-    }
+    },
 ];
 
 const router = createRouter({

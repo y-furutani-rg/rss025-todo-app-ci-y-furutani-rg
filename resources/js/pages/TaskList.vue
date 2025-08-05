@@ -18,14 +18,11 @@
                     <td class="text-nowrap overflow-hidden p-4">{{ task.content }}</td>
                     <td class="text-nowrap overflow-hidden p-4">{{ task.person_in_charge }}</td>
                     <td class="text-nowrap overflow-hidden p-4">
-                        <Button :link="`/task/show/${task.id}`" class="w-fit">
-                            <p>詳細</p>
-                        </Button>
+                        <Button :link="`/task/show/${task.id}`" name="詳細" class="w-fit"></Button>
                     </td>
                     <td class="text-nowrap overflow-hidden p-4">
-                        <Button :link="`/task/edit/${task.id}`" class="w-fit flex">
+                        <Button :link="`/task/edit/${task.id}`" name="編集" class="w-fit flex">
                             <Pencil class="w-4 h-4 mr-1 flex"></Pencil>
-                            <p>編集</p>
                         </Button>
                     </td>                    
                 </tr>

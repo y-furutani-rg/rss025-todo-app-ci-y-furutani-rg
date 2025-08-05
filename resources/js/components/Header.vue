@@ -4,11 +4,7 @@ import Button from './Button.vue';
 
 <template>
     <header class="flex">
-        <Button link="/tasks">
-            <p>タスク一覧</p>
-        </Button>
-        <Button link="/task/create">
-            <p>タスク追加</p>
-        </Button>
+        <Button link="/tasks" name="タスク一覧"></Button>
+        <Button link="/task/create" name="タスク追加"></Button>
     </header>
 </template>

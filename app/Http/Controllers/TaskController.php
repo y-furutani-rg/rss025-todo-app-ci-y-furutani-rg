@@ -77,12 +77,10 @@ class TaskController extends Controller
     {
         DB::beginTransaction();
         try {
-            $task = Task::findTaskById($id);
             $update = Task::updateTask($request->validated(), $id);
             DB::commit();
 
             return response()->json([
-                'data' => $task,
                 'message' => 'データの更新に成功しました。',
             ], 200);
         } catch (Exception $e) {

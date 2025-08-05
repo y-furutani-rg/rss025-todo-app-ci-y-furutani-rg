@@ -18,8 +18,16 @@ class Task extends Model
         return self::all();
     }
 
-    public static function findTaskById(int $id): self
+    public static function findTaskById($id)
     {
         return self::findOrFail($id);
+    }
+
+    public static function updateTask(array $data, $id)
+    {
+        $task = self::findOrFail($id);
+        $task->update($data);
+
+        return $task;
     }
 }

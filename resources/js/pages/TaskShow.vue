@@ -29,7 +29,9 @@
                 disabled>
             </input>
         </div>
-        <Button link="/tasks" name="戻る" class="text-center"></Button>
+        <Button link="/tasks" class="text-center">
+            <p>戻る</p>
+        </Button>
     </div>
 </template>
 
@@ -40,7 +42,7 @@ import { useRoute } from 'vue-router';
 import { API_URL_SHOW } from '../api/globalApi.js';
 import Button from '../components/Button.vue';
 
-const router = useRoute();
+const route = useRoute();
 const task = ref();
 
 const fetchTask = async (id) => {
@@ -53,7 +55,7 @@ const fetchTask = async (id) => {
 };
 
 onMounted(() => {
-    const id = router.params.id;
+    const id = route.params.id;
     if (id) {
         fetchTask(id);
     }

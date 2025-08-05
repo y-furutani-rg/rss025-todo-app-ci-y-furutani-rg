@@ -77,7 +77,7 @@ class TaskController extends Controller
     {
         DB::beginTransaction();
         try {
-            $update = Task::updateTask($request->validated(), $id);
+            Task::updateTask($request->validated(), $id);
             DB::commit();
 
             return response()->json([

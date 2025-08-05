@@ -23,10 +23,10 @@ class Task extends Model
         return self::findOrFail($id);
     }
 
-    public static function updateTask(array $data, int $id): self
+    public static function updateTask(array $update_task, int $id): self
     {
         $task = self::findOrFail($id);
-        $task->update($data);
+        $task->update($update_task);
 
         return $task;
     }

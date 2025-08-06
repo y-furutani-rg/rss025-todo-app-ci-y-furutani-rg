@@ -9,6 +9,7 @@
                     <th class="text-nowrap overflow-hidden p-4">担当者</th>
                     <th class="text-nowrap overflow-hidden p-4 w-1/10">詳細</th>
                     <th class="text-nowrap overflow-hidden p-4 w-1/10">編集</th>
+                    <th class="text-nowrap overflow-hidden p-4 w-1/10">削除</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +25,12 @@
                         <Button :link="`/task/edit/${task.id}`" name="編集" class="w-fit flex">
                             <Pencil class="w-4 h-4 mr-1 flex"></Pencil>
                         </Button>
-                    </td>                    
+                    </td>
+                    <td class="text-nowrap overflow-hidden p-4">
+                        <Button name="削除" @click="() => deleteTask(task.id)" class="w-fit flex" variant="primary">
+                            <Trash class="w-4 h-4 mr-1 flex"></Trash>
+                        </Button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -34,17 +40,38 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios'; 
-import { API_URL } from '../api/globalApi.js';
+import { API_URL, API_URL_DELETE } from '../api/globalApi.js';
 import Button from '../components/Button.vue';
 import Pencil from '../components/icons/Pencil.vue';
+import Trash from '../components/icons/Trash.vue';
+import { useRouter } from 'vue-router';
+import { useFlashMessage } from '../composables/useFlashMessage.js';
+
 const tasks = ref([]);
+const router = useRouter();
+const { setFlashMessage } = useFlashMessage();
 
 const fetchTasks = async () => {
     try {
         const response = await axios.get(API_URL);
         tasks.value = response.data.data;
     } catch (error) {
-        console.error('データの取得に失敗しました', error);
+        console.error('データの削除に失敗しました', error);
+    }
+};
+
+const deleteTask = async (taskIdDelete) => {
+    if (!confirm('本当にこのタスクを削除してもよろしいですか？')) {
+    return; 
+    }
+    try{
+        const response = await axios.delete(API_URL_DELETE(taskIdDelete));
+        tasks.value = tasks.value.filter(task => task.id !== taskIdDelete);
+        setFlashMessage('タスクが正常に削除されました。', 'success');
+
+    } catch (error) {
+        console.error('データの削除に失敗しました', error);
+        setFlashMessage('タスクの削除に失敗しました。', 'error');
     }
 };
 

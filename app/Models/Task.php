@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
-{
+{   
+    use SoftDeletes;
     protected $fillable = [
         'title',
         'content',
@@ -29,5 +31,12 @@ class Task extends Model
         $task->update($update_task);
 
         return $task;
+    }
+
+    public static function deleteTask(int $id): bool
+    {
+        $task = self::findOrFail($id);
+
+        return $task->delete();
     }
 }

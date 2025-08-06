@@ -92,4 +92,24 @@ class TaskController extends Controller
             ], 500);
         }
     }
+
+    public function softDeleteTask($id)
+    {
+        DB::beginTransaction();
+        try {
+            Task::deleteTask($id);
+            DB::commit();
+
+            return response()->json([
+                'message' => 'データの削除に成功しました。',
+            ], 200);
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+
+            return response()->json([
+                'message' => 'サーバー内部でエラーが発生しました。',
+            ], 500);
+        }
+    }
 }

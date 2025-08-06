@@ -27,7 +27,7 @@
                         </Button>
                     </td>
                     <td class="text-nowrap overflow-hidden p-4">
-                        <Button name="削除" @click="() => deleteTask(task.id)" class="w-fit flex" variant="primary">
+                        <Button name="削除" @click="deleteTask(task.id)" class="w-fit flex" variant="primary">
                             <Trash class="w-4 h-4 mr-1 flex"></Trash>
                         </Button>
                     </td>

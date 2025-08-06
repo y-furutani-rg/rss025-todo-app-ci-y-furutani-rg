@@ -56,14 +56,15 @@ const fetchTasks = async () => {
         const response = await axios.get(API_URL);
         tasks.value = response.data.data;
     } catch (error) {
-        console.error('データの削除に失敗しました', error);
+        console.error('データの取得に失敗しました', error);
     }
 };
 
 const deleteTask = async (taskIdDelete) => {
     if (!confirm('本当にこのタスクを削除してもよろしいですか？')) {
-    return; 
+        return; 
     }
+
     try{
         const response = await axios.delete(API_URL_DELETE(taskIdDelete));
         tasks.value = tasks.value.filter(task => task.id !== taskIdDelete);

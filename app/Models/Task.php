@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Task extends Model
 {   
     use SoftDeletes;
+
     protected $fillable = [
         'title',
         'content',
@@ -20,12 +21,12 @@ class Task extends Model
         return self::all();
     }
 
-    public static function findTaskById(int $id): self
+    public static function findTaskById(int $id)
     {
         return self::findOrFail($id);
     }
 
-    public static function updateTask(array $update_task, int $id): self
+    public static function updateTask(array $update_task, int $id)
     {
         $task = self::findOrFail($id);
         $task->update($update_task);
@@ -33,10 +34,9 @@ class Task extends Model
         return $task;
     }
 
-    public static function softDeleteTask(int $id): bool
+    public static function deleteTask(int $id)
     {
         $task = self::findOrFail($id);
-
-        return $task->delete();
+        $task->delete();
     }
 }

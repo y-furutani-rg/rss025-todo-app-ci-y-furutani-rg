@@ -18,4 +18,4 @@ Route::get('/task/edit/{id}', [TaskController::class, 'getTask']);
 
 Route::put('/task/edit/{id}', [TaskController::class, 'update']);
 
-Route::delete('/task/delete/{id}', [TaskController::class, 'softDeleteTask']);
+Route::delete('/task/delete/{id}', [TaskController::class, 'deleteTask']);

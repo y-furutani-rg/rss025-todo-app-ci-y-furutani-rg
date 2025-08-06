@@ -97,7 +97,7 @@ class TaskController extends Controller
     {
         DB::beginTransaction();
         try {
-            Task::SoftDeleteTask($id);
+            Task::softDeleteTask($id);
             DB::commit();
 
             return response()->json([

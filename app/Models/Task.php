@@ -33,7 +33,7 @@ class Task extends Model
         return $task;
     }
 
-    public static function SoftDeleteTask(int $id): bool
+    public static function softDeleteTask(int $id): bool
     {
         $task = self::findOrFail($id);
 

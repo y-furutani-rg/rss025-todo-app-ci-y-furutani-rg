@@ -1,0 +1,19 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+
+parameters:
+
+    paths:
+        - app/
+
+    # チェックの厳しさを 0~10 の 11 段階で指定できます
+    # 今回は 1 にしておきます
+    # プロジェクトの状況に応じて上げ下げすべきですが、基本的には 2 以上が望ましいです
+    level: 1
+
+#    ignoreErrors:
+#        - '#PHPDoc tag @var#'
+#
+#    excludePaths:
+#        - ./*/*/FileToBeExcluded.php

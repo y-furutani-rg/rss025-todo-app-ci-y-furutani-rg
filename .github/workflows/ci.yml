@@ -27,7 +27,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           # プロジェクトで使用しているPHPバージョンに合わせて変更してください
-          php-version: '8.2'
+          php-version: '8.4'
           extensions: mbstring, dom, fileinfo, pdo_mysql
           coverage: none
 
@@ -37,7 +37,7 @@ jobs:
 
       # 4. Larastan を実行してリンタエラーが出ていないかチェックする
       - name: Run linter
-        run: ./vendor/bin/phpstan analyse --memory-limit=2G
+        run: ./vendor/bin/phpstan analyse --memory-limit=3G
 
       # 5. PHPUnit を実行してテストを行う
       - name: Run tests

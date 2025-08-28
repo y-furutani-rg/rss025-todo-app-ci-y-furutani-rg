@@ -1,0 +1,10 @@
+# .github/workflows/ci.yml の内容
+# ...（name から Run linter のステップまでは既存のものをそのまま利用）...
+
+        # Larastan を実行してリンタエラーが出ていないかチェックする
+      - name: Run linter
+        run: ./vendor/bin/phpstan analyse --memory-limit=2G
+
+        # 【ここから追記】PHPUnit を実行してテストを行う
+      - name: Run tests
+        run: ./vendor/bin/phpunit tests

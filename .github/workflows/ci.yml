@@ -1,11 +1,44 @@
-# .github/workflows/ci.yml の内容
-# .github/workflows/ci.yml の内容
-# ...（name から Run linter のステップまでは既存のものをそのまま利用）...
+name: PHP CI
 
-        # Larastan を実行してリンタエラーが出ていないかチェックする
-        name: Run linter
-        run: ./vendor/bin/phpstan analyse --memory-limit=3G
+# ワークフローが実行されるきっかけ（トリガー）を設定
+on:
+  # mainブランチにプッシュされた時
+  push:
+    branches: [ "main" ]
+  # mainブランチに対するプルリクエストが作成・更新された時
+  pull_request:
+    branches: [ "main" ]
 
-        # 【ここから追記】PHPUnit を実行してテストを行う
-        name: Run tests
+# 実行される一連の処理（ジョブ）を定義
+jobs:
+  # ジョブのID（任意の名前に変更可能）
+  build:
+    # ジョブを実行する仮想環境の種類
+    runs-on: ubuntu-latest
+
+    # ジョブ内の個別の処理（ステップ）を定義
+    steps:
+      # 1. リポジトリのソースコードを仮想環境にチェックアウトする
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. PHP環境をセットアップする
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          # プロジェクトで使用しているPHPバージョンに合わせて変更してください
+          php-version: '8.2'
+          extensions: mbstring, dom, fileinfo, pdo_mysql
+          coverage: none
+
+      # 3. Composerの依存関係をインストールする
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+      # 4. Larastan を実行してリンタエラーが出ていないかチェックする
+      - name: Run linter
+        run: ./vendor/bin/phpstan analyse --memory-limit=2G
+
+      # 5. PHPUnit を実行してテストを行う
+      - name: Run tests
         run: ./vendor/bin/phpunit tests
